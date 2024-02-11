@@ -13,60 +13,87 @@
 
 <body>
 
+    <!-- Header section -->
     <header>
+        <!-- Dashboard title -->
         <div class="dashboard-title">E-Commerce Data Dashboard</div>
     </header>
 
+    <!-- Main content area -->
     <div class='container'>
 
+        <!-- Section for Orders Over Time chart -->
         <section>
+            <!-- Row for chart -->
             <div class="chart-row">
+                <!-- Container for full-width chart -->
                 <div class="chart-container full-width">
                     <h2>Orders Over Time</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="ordersChart"></canvas>
                 </div>
             </div>
         </section>
 
+        <!-- Section for Temperature chart -->
         <section>
+            <!-- Row for chart -->
             <div class="chart-row">
+                <!-- Container for full-width chart -->
                 <div class="chart-container full-width">
                     <h2>Temperature</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="temperatureChart"></canvas>
                 </div>
             </div>
         </section>
 
-
+        <!-- Section for Low Stock Levels and Most Popular Products charts -->
         <section>
+            <!-- Row for charts -->
             <div class="chart-row">
+                <!-- Container for half-width chart -->
                 <div class="chart-container half-width">
                     <h2>Low Stock Levels</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="stockChart"></canvas>
                 </div>
+                <!-- Container for half-width chart -->
                 <div class="chart-container half-width">
                     <h2>Most Popular Products</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="popularProductsChart"></canvas>
                 </div>
             </div>
         </section>
+
+        <!-- Section for Popular Categories and Popular Payment Method charts -->
         <section>
+            <!-- Row for charts -->
             <div class="chart-row">
+                <!-- Container for half-width chart -->
                 <div class="chart-container half-width">
                     <h2>Popular Categories</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="categoryPopularityChart"></canvas>
                 </div>
+                <!-- Container for half-width chart -->
                 <div class="chart-container half-width">
                     <h2>Popular Payment Method</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="paymentMethodChart"></canvas>
                 </div>
             </div>
         </section>
 
+        <!-- Section for Revenue Over Time chart -->
         <section>
+            <!-- Row for chart -->
             <div class="chart-row">
+                <!-- Container for full-width chart -->
                 <div class="chart-container full-width">
                     <h2>Revenue Over Time</h2>
+                    <!-- Canvas element for the chart -->
                     <canvas id="revenueChart"></canvas>
                 </div>
             </div>
@@ -74,10 +101,13 @@
 
     </div>
 
+    <!-- Footer section -->
     <footer>
+        <!-- Copyright notice -->
         <div class="footer">© 2023 CCL Eccomerce Dashboard</div>
     </footer>
-    <!-- LOAD OUR JAVASCRIPT FILE. Place this at the bottom of the page so that the DOM is loaded before the script is run. -->
+    <!-- Script tag to load the JavaScript file -->
+    <!-- Place this at the bottom of the page so that the DOM is loaded before the script is run -->
     <script src="../static/dashboard-script.js"></script>
 
 </body>

@@ -7,10 +7,11 @@ import requests  # Importing the requests library
 # Setup logging
 logging.basicConfig(filename="app.log", level=logging.DEBUG)
 
+# Get the path of the directory where this script is located
 working_directory = pathlib.Path(__file__).parent.absolute()
 DATABASE = working_directory / "CCL_ecommerce.db"
 
-
+# Function to execute database queries
 def query_db(query: str, args=()) -> list:
     try:
         with sqlite3.connect(DATABASE) as conn:
@@ -21,25 +22,24 @@ def query_db(query: str, args=()) -> list:
         logging.error("Database error: %s", e)
         abort(500, description="Database error occurred.")
 
-
+# Initialize Flask app
 app = Flask(__name__)
 
-
+# Error handlers
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({"error": "Not found"}), 404)
-
 
 @app.errorhandler(500)
 def internal_error(error):
     return make_response(jsonify({"error": "Internal server error"}), 500)
 
-
+# Route for the index page
 @app.route("/")
 def index() -> str:
     return render_template("dashboard.html")
 
-
+# API endpoint to fetch temperature over time
 @app.route("/api/temperature_over_time", methods=["GET"])
 def temperature_over_time():
     # Fetching the date range from orders_over_time
@@ -69,7 +69,7 @@ FROM orders;
         logging.error("Error in /api/temperature_over_time: %s", e)
         abort(500, description="Error fetching temperature data.")
 
-
+# API endpoint to fetch orders over time
 @app.route("/api/orders_over_time")
 def orders_over_time() -> Response:
     query = """
@@ -87,7 +87,7 @@ def orders_over_time() -> Response:
         logging.error("Error in /api/orders_over_time: %s", e)
         abort(500, description="Error processing data.")
 
-
+# API endpoint to fetch products with low stock levels
 @app.route("/api/low_stock_levels")
 def low_stock_levels() -> Response:
     query = """
@@ -102,7 +102,7 @@ def low_stock_levels() -> Response:
     quantities = [row[1] for row in result]
     return jsonify({"products": products, "quantities": quantities})
 
-
+# API endpoint to fetch most popular products
 @app.route("/api/most_popular_products")
 def most_popular_products_new() -> Response:
     query = """
@@ -121,7 +121,7 @@ def most_popular_products_new() -> Response:
     ]
     return jsonify(products)
 
-
+# API endpoint to fetch revenue generation over time
 @app.route("/api/revenue_generation")
 def revenue_generation() -> Response:
     query = """
@@ -137,7 +137,7 @@ def revenue_generation() -> Response:
     revenues = [row[1] for row in result]
     return jsonify({"dates": dates, "revenues": revenues})
 
-
+# API endpoint to fetch product category popularity
 @app.route("/api/product_category_popularity")
 def product_category_popularity() -> Response:
     query = """
@@ -154,7 +154,7 @@ def product_category_popularity() -> Response:
     sales = [row[1] for row in result]
     return jsonify({"categories": categories, "sales": sales})
 
-
+# API endpoint to fetch payment method popularity
 @app.route("/api/payment_method_popularity")
 def payment_method_popularity() -> Response:
     query = """
@@ -170,6 +170,7 @@ def payment_method_popularity() -> Response:
     counts = [row[1] for row in result]
     return jsonify({"methods": methods, "counts": counts})
 
-
+# Run the Flask app
 if __name__ == "__main__":
     app.run(debug=True)
+
